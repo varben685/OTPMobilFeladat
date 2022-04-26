@@ -1,5 +1,6 @@
 package main;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Payment {
@@ -9,10 +10,10 @@ public class Payment {
 	private Integer amount;
 	private String transferNum;
 	private String cardNum;
-	private Date paymentDate;
+	private LocalDate paymentDate;
 	
 	public Payment(String webshopId,String customerId,String paymentMethod,Integer amount,
-			String transferNum,String cardNum,Date paymentDate) {
+			String transferNum,String cardNum,LocalDate paymentDate) {
 		this.setWebShopId(webshopId);
 		this.setCustomerId(customerId);
 		this.setPaymentMethod(paymentMethod);
@@ -70,11 +71,11 @@ public class Payment {
 		this.cardNum = cardNum;
 	}
 
-	public Date getPaymentDate() {
+	public LocalDate getPaymentDate() {
 		return paymentDate;
 	}
 
-	public void setPaymentDate(Date paymentDate) {
+	public void setPaymentDate(LocalDate paymentDate) {
 		this.paymentDate = paymentDate;
 	}
 }

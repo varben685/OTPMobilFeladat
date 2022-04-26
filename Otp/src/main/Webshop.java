@@ -46,5 +46,18 @@ public class Webshop {
 		}
 		return sum;
 	}
+	
+	public ArrayList<Customer> getSumCustomersPayments(){
+		ArrayList<Customer> list = new ArrayList<Customer>();
+		for(Customer c:customerList) {
+			for(Payment p:paymentList) {
+				if(c.getCostumerId().equals(p.getCustomerId())) {
+					c.addAmountToSumAmount(p.getAmount());
+				}
+			}
+			list.add(c);
+		}
+		return list;
+	}
 
 }

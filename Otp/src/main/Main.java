@@ -24,6 +24,7 @@ public class Main {
 			fc.readPaymentsFromFile("src/files/payments.csv");
 			
 			writeWebshopsCardAndTransferAmounts();
+			writeSumAmountPerCustomer();
 			
 			
 		} catch (SecurityException e) {
@@ -51,6 +52,14 @@ public class Main {
 	private static void writeWebshopsCardAndTransferAmounts() {
 		for(Webshop w:webshopList) {
 			fc.writeToFile("src/files/report02.csv", w.getWebShopId(), w.sumAllCardPayment().toString(), w.sumAllTransferPayment().toString());
+		}
+	}
+	
+	private static void writeSumAmountPerCustomer() {
+		for(Webshop w:webshopList) {
+			for(Customer c:w.getSumCustomersPayments()) {
+				fc.writeToFile("src/files/report01.csv", c.getCostumerName(), c.getCostumerAddress(), c.getSumAmount().toString());
+			}
 		}
 	}
 
