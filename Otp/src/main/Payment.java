@@ -5,13 +5,13 @@ import java.util.Date;
 public class Payment {
 	private String webShopId;
 	private String customerId;
-	private PaymentMethodEnum paymentMethod;
+	private String paymentMethod;
 	private Integer amount;
 	private String transferNum;
 	private String cardNum;
 	private Date paymentDate;
 	
-	public Payment(String webshopId,String customerId,PaymentMethodEnum paymentMethod,Integer amount,
+	public Payment(String webshopId,String customerId,String paymentMethod,Integer amount,
 			String transferNum,String cardNum,Date paymentDate) {
 		this.setWebShopId(webshopId);
 		this.setCustomerId(customerId);
@@ -38,11 +38,11 @@ public class Payment {
 		this.customerId = customerId;
 	}
 
-	public PaymentMethodEnum getPaymentMethod() {
+	public String getPaymentMethod() {
 		return paymentMethod;
 	}
 
-	public void setPaymentMethod(PaymentMethodEnum paymentMethod) {
+	public void setPaymentMethod(String paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
 
