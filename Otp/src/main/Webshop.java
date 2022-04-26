@@ -26,5 +26,25 @@ public class Webshop {
 	public void addPaymentToPaymentList(Payment p) {
 		paymentList.add(p);
 	}
+	
+	public Integer sumAllCardPayment() {
+		Integer sum=0;
+		for(Payment p:paymentList) {
+			if(p.getPaymentMethod().equals(PaymentMethodEnum.CARD.name())) {
+				sum+=p.getAmount();
+			}
+		}
+		return sum;
+	}
+	
+	public Integer sumAllTransferPayment() {
+		Integer sum=0;
+		for(Payment p:paymentList) {
+			if(p.getPaymentMethod().equals(PaymentMethodEnum.TRANSFER.name())) {
+				sum+=p.getAmount();
+			}
+		}
+		return sum;
+	}
 
 }

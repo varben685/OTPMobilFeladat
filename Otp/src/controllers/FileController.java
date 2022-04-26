@@ -3,7 +3,10 @@ package controllers;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,7 +21,7 @@ import main.Webshop;
 public class FileController {
 	
 	public void readCustomersFromFile(String fn) {
-		try(BufferedReader br = new BufferedReader(new FileReader(fn))){
+		try(BufferedReader br = new BufferedReader(new FileReader(fn,StandardCharsets.UTF_8))){
 			String line;
 			while((line=br.readLine())!=null) {
 				String[] values = line.split(";");
@@ -43,7 +46,7 @@ public class FileController {
 	}
 	
 	public void readPaymentsFromFile(String fn) {
-		try(BufferedReader br = new BufferedReader(new FileReader(fn))){
+		try(BufferedReader br = new BufferedReader(new FileReader(fn,StandardCharsets.UTF_8))){
 			String line;
 			while((line=br.readLine())!=null) {
 				String[] values = line.split(";");
@@ -70,6 +73,24 @@ public class FileController {
 			Main.logger.log(Level.SEVERE,e.getMessage(),e);
 		} catch (ParseException e) {
 			
+			Main.logger.log(Level.SEVERE,e.getMessage(),e);
+		}
+	}
+	
+	public void writeToFile(String fn,String a,String b,String c) {
+		try {
+			FileWriter fw = new FileWriter(fn,StandardCharsets.UTF_8);
+			PrintWriter pw = new PrintWriter(fw);
+			StringBuilder sb = new StringBuilder();
+			sb.append(a);
+			sb.append(";");
+			sb.append(b);
+			sb.append(";");
+			sb.append(c);
+			
+			pw.write(sb.toString());
+			pw.close();
+		} catch (IOException e) {
 			Main.logger.log(Level.SEVERE,e.getMessage(),e);
 		}
 	}

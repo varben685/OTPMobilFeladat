@@ -6,12 +6,14 @@ public class Customer {
 	private String costumerId;
 	private String costumerName;
 	private String costumerAddress;
+	private Integer sumAmount;
 	
 	public Customer (String webShopId,String costumerId,String costumerName,String costumerAddress) {
 		this.setWebShopId(webShopId);
 		this.setCostumerId(costumerId);
 		this.setCostumerName(costumerName);
 		this.setCostumerAddress(costumerAddress);
+		this.setSumAmount(0);
 	}
 
 	public String getWebShopId() {
@@ -44,5 +46,17 @@ public class Customer {
 
 	public void setCostumerAddress(String costumerAddress) {
 		this.costumerAddress = costumerAddress;
+	}
+
+	public Integer getSumAmount() {
+		return sumAmount;
+	}
+
+	public void setSumAmount(Integer sumAmount) {
+		this.sumAmount = sumAmount;
+	}
+	
+	public void addAmountToSumAmount(Integer i) {
+		this.sumAmount+=i;
 	}
 }

@@ -23,6 +23,9 @@ public class Main {
 			fc.readCustomersFromFile("src/files/customer.csv");
 			fc.readPaymentsFromFile("src/files/payments.csv");
 			
+			writeWebshopsCardAndTransferAmounts();
+			
+			
 		} catch (SecurityException e) {
 			logger.log(Level.SEVERE,e.getMessage(),e);
 			
@@ -43,6 +46,12 @@ public class Main {
 			}
 		}
 		return null;
+	}
+	
+	private static void writeWebshopsCardAndTransferAmounts() {
+		for(Webshop w:webshopList) {
+			fc.writeToFile("src/files/report02.csv", w.getWebShopId(), w.sumAllCardPayment().toString(), w.sumAllTransferPayment().toString());
+		}
 	}
 
 }
