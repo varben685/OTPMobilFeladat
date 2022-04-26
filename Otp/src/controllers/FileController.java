@@ -16,10 +16,11 @@ import java.time.format.ResolverStyle;
 import java.util.Date;
 import java.util.logging.Level;
 
+import main.CardPayment;
 import main.Customer;
 import main.Main;
 import main.Payment;
-import main.PaymentMethodEnum;
+import main.TransferPayment;
 import main.Webshop;
 
 public class FileController {
@@ -57,19 +58,22 @@ public class FileController {
 				String[] values = line.split(";");
 				
 				Webshop webshop = Main.getWebshopFromWebshopList(values[0]);
-				if(values[2].equals("card")) {
-					values[2]=PaymentMethodEnum.CARD.name();
-				}
-				else {
-					values[2]=PaymentMethodEnum.TRANSFER.name();
-				}
 				DateTimeFormatter f = DateTimeFormatter.ofPattern("uuuu.MM.dd").withResolverStyle(ResolverStyle.STRICT);
 				LocalDate date = LocalDate.parse(values[6],f);
 				
-				Payment payment = new Payment(values[0],values[1],values[2],Integer.parseInt(values[3])
-						,values[4],values[5],date);
+				if(values[2].equals("card")) {
+					Payment payment = new CardPayment(values[0],values[1],Integer.parseInt(values[3])
+							,values[5],date);
+					webshop.addPaymentToPaymentList(payment);
+					
+				}
+				else {
+					Payment payment = new TransferPayment(values[0],values[1],Integer.parseInt(values[3])
+							,values[4],date);
+					webshop.addPaymentToPaymentList(payment);
+				}
 				
-				webshop.addPaymentToPaymentList(payment);
+				
 				}catch(DateTimeParseException e) {
 					Main.logger.log(Level.SEVERE,e.getMessage(),e);
 				}

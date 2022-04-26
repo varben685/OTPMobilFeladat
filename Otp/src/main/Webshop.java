@@ -30,7 +30,7 @@ public class Webshop {
 	public Integer sumAllCardPayment() {
 		Integer sum=0;
 		for(Payment p:paymentList) {
-			if(p.getPaymentMethod().equals(PaymentMethodEnum.CARD.name())) {
+			if(p.getClass().equals(CardPayment.class)) {
 				sum+=p.getAmount();
 			}
 		}
@@ -40,7 +40,7 @@ public class Webshop {
 	public Integer sumAllTransferPayment() {
 		Integer sum=0;
 		for(Payment p:paymentList) {
-			if(p.getPaymentMethod().equals(PaymentMethodEnum.TRANSFER.name())) {
+			if(p.getClass().equals(TransferPayment.class)) {
 				sum+=p.getAmount();
 			}
 		}
