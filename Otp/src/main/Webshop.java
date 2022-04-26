@@ -4,11 +4,12 @@ import java.util.ArrayList;
 
 public class Webshop {
 	private String webShopId;
-	private ArrayList<Costumer> costumers = new ArrayList<Costumer>();
+	private ArrayList<Customer> customerList = new ArrayList<Customer>();
+	private ArrayList<Payment> paymentList = new ArrayList<Payment>();
 	
-	public Webshop(String webShopId,String costumerId) {
+	public Webshop(String webShopId) {
 		this.setWebShopId(webShopId);
-		this.setCostumerId(costumerId);
+		
 	}
 
 	public String getWebShopId() {
@@ -19,12 +20,11 @@ public class Webshop {
 		this.webShopId = webShopId;
 	}
 
-	public String getCostumerId() {
-		return costumerId;
+	public void addCustomerToCustomerList(Customer c) {
+		customerList.add(c);
 	}
-
-	public void setCostumerId(String costumerId) {
-		this.costumerId = costumerId;
+	public void addPaymentToPaymentList(Payment p) {
+		paymentList.add(p);
 	}
 
 }
